@@ -1,0 +1,16 @@
+.section-label {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  color: var(--foreground);
+}
+.section-label__index {
+  color: var(--accent);
+}
+.section-label__rule {
+  color: var(--faint);
+  letter-spacing: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 100%;
+}

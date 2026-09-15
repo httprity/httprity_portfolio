@@ -1,0 +1,116 @@
+.plist {
+  border-top: 1px solid var(--border);
+}
+
+.prow {
+  border-bottom: 1px solid var(--border);
+}
+
+.prow__link {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-3);
+  padding: var(--space-6) 0;
+  position: relative;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+.prow__link:focus-visible {
+  outline-offset: 6px;
+}
+
+.prow__index {
+  font-size: var(--text-sm);
+}
+
+.prow__name {
+  display: block;
+  font-size: var(--text-project);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+  transition: transform var(--dur-base) var(--ease-out);
+}
+
+.prow__aside {
+  display: grid;
+  gap: var(--space-3);
+}
+.prow__summary {
+  color: var(--muted);
+  font-size: var(--text-lg);
+  line-height: 1.45;
+  max-width: 40ch;
+  text-wrap: pretty;
+}
+.prow__tags {
+  font-size: var(--text-xs);
+  line-height: 1.8;
+}
+
+.prow__cta {
+  margin-top: var(--space-2);
+}
+
+/* ---------- desktop: four-column editorial row ---------- */
+@media (min-width: 900px) {
+  .prow__link {
+    grid-template-columns: 5rem minmax(0, 5fr) minmax(0, 4fr) 15rem;
+    column-gap: var(--space-6);
+    align-items: start;
+    padding: var(--space-7) 0;
+  }
+  .prow__index {
+    padding-top: 0.55em;
+  }
+  .prow__aside {
+    padding-top: 0.4em;
+  }
+  .prow__cta {
+    margin-top: 0;
+    justify-self: end;
+    padding-top: 0.6em;
+  }
+}
+
+/* ---------- hover / focus (pointer devices) ---------- */
+@media (hover: hover) and (pointer: fine) {
+  .prow__link::before {
+    /* thin accent rule that grows in from the left */
+    content: '';
+    position: absolute;
+    left: 0;
+    top: -1px;
+    height: 1px;
+    width: 0;
+    background: var(--accent);
+    transition: width var(--dur-base) var(--ease-out);
+  }
+  .prow__link:hover::before,
+  .prow__link:focus-visible::before {
+    width: 100%;
+  }
+  .prow__link:hover .prow__name,
+  .prow__link:focus-visible .prow__name {
+    transform: translateX(6px);
+  }
+  .prow__link:hover .prow__index,
+  .prow__link:focus-visible .prow__index {
+    color: var(--accent);
+  }
+  .prow__link:hover .prow__cta,
+  .prow__link:focus-visible .prow__cta {
+    color: var(--accent);
+  }
+  .prow__link:hover .prow__cta::before,
+  .prow__link:focus-visible .prow__cta::before {
+    content: '>';
+    color: var(--accent);
+  }
+  .prow__link:hover .prow__cta::after,
+  .prow__link:focus-visible .prow__cta::after {
+    content: '_';
+    color: var(--accent);
+    animation: blink 1s steps(2, start) infinite;
+  }
+}

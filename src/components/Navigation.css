@@ -1,0 +1,106 @@
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background: color-mix(in srgb, var(--background) 92%, transparent);
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--dur-base) var(--ease-out);
+}
+.nav.is-scrolled {
+  border-bottom-color: var(--border);
+}
+
+.nav__inner {
+  height: var(--nav-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-5);
+}
+
+.nav__brand {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.6ch;
+  min-height: 44px;
+  align-items: center;
+}
+.nav__mark {
+  color: var(--accent);
+  font-size: var(--text-sm);
+}
+.nav__name {
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.nav__links ul {
+  display: flex;
+  gap: clamp(1.25rem, 3vw, 2.5rem);
+}
+.nav__link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  transition: color var(--dur-fast) var(--ease-out);
+}
+.nav__link::before {
+  content: '/';
+  color: var(--faint);
+  margin-right: 0.6ch;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+.nav__link:hover,
+.nav__link:focus-visible {
+  color: var(--foreground);
+}
+.nav__link:hover::before,
+.nav__link:focus-visible::before {
+  color: var(--accent);
+}
+
+.nav__toggle {
+  display: none;
+  min-height: 44px;
+  padding-inline: var(--space-2);
+  color: var(--foreground);
+}
+
+.nav__mobile {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--background);
+}
+.nav__mobile li + li {
+  border-top: 1px solid var(--border);
+}
+.nav__mobile-link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-4) 0;
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+.nav__mobile-arrow {
+  margin-left: auto;
+  color: var(--faint);
+}
+
+@media (max-width: 720px) {
+  .nav__links {
+    display: none;
+  }
+  .nav__toggle {
+    display: inline-flex;
+    align-items: center;
+  }
+}

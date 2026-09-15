@@ -1,0 +1,171 @@
+/* ---------- grid of cards: shared hairlines, no floating boxes ---------- */
+.xgrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  border-top: 1px solid var(--border);
+}
+@media (min-width: 640px) {
+  .xgrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    border-left: 1px solid var(--border);
+  }
+}
+@media (min-width: 1024px) {
+  .xgrid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* ---------- card ---------- */
+.xcard {
+  position: relative;
+  border-bottom: 1px solid var(--border);
+  background: var(--background);
+  transition: background var(--dur-base) var(--ease-out);
+}
+@media (min-width: 640px) {
+  .xcard {
+    border-right: 1px solid var(--border);
+  }
+}
+
+.xcard__head {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    'index arrow'
+    'title arrow';
+  align-items: center;
+  gap: var(--space-2) var(--space-4);
+  padding: var(--space-5) var(--space-5);
+  text-align: left;
+  min-height: 56px;
+}
+.xcard__head:focus-visible {
+  outline-offset: -3px;
+}
+.xcard__index {
+  grid-area: index;
+}
+.xcard__title {
+  grid-area: title;
+  font-size: clamp(1.25rem, 1rem + 0.8vw, 1.6rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+.xcard__arrow {
+  grid-area: arrow;
+  align-self: end;
+  font-size: 1.25rem;
+  color: var(--faint);
+  transition:
+    transform var(--dur-fast) var(--ease-out),
+    color var(--dur-fast) var(--ease-out);
+}
+
+.xcard__list {
+  margin: 0;
+  display: grid;
+  gap: var(--space-4);
+  padding: 0 var(--space-5) var(--space-5);
+}
+.xcard__cap dt {
+  font-weight: 500;
+  font-size: 0.95rem;
+  letter-spacing: -0.01em;
+}
+.xcard__cap dd {
+  margin: var(--space-1) 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+/* ---------- accordion mode (touch / narrow): expand in flow ---------- */
+.xcard__panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--dur-base) var(--ease-out);
+}
+.xcard__clip {
+  overflow: hidden;
+  min-height: 0;
+}
+.xcard[data-open='true'] .xcard__panel {
+  grid-template-rows: 1fr;
+}
+.xcard[data-open='true'] .xcard__arrow {
+  transform: rotate(45deg);
+  color: var(--accent);
+}
+
+/* ---------- overlay mode (desktop with a real pointer) ----------
+   Title stays at the top, the list lives in the middle (invisible at rest),
+   the arrow is pinned bottom-right. Nothing moves, so no layout shift. */
+@media (hover: hover) and (pointer: fine) and (min-width: 1024px) {
+  .xcard {
+    min-height: 440px;
+    display: flex;
+    flex-direction: column;
+  }
+  .xcard__head {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'index'
+      'title';
+    align-content: start;
+    padding-bottom: var(--space-4);
+  }
+  .xcard__arrow {
+    position: absolute;
+    right: var(--space-5);
+    bottom: var(--space-5);
+    font-size: 1.4rem;
+  }
+
+  .xcard__panel {
+    display: block;
+    flex: 1;
+    opacity: 0;
+    transform: translateY(6px);
+    transition:
+      opacity var(--dur-base) var(--ease-out),
+      transform var(--dur-base) var(--ease-out);
+  }
+  .xcard__clip {
+    overflow: visible;
+  }
+  .xcard__list {
+    padding-bottom: calc(var(--space-5) + 2.5rem);
+    gap: var(--space-3);
+  }
+  .xcard__cap dd {
+    font-size: 0.85rem;
+  }
+
+  .xcard:hover,
+  .xcard:focus-within,
+  .xcard[data-open='true'] {
+    background: var(--surface);
+  }
+  .xcard:hover .xcard__panel,
+  .xcard:focus-within .xcard__panel,
+  .xcard[data-open='true'] .xcard__panel {
+    opacity: 1;
+    transform: none;
+  }
+  .xcard:hover .xcard__arrow,
+  .xcard:focus-within .xcard__arrow,
+  .xcard[data-open='true'] .xcard__arrow {
+    color: var(--accent);
+    transform: none;
+  }
+  .xcard:hover .xcard__index,
+  .xcard:focus-within .xcard__index,
+  .xcard[data-open='true'] .xcard__index {
+    color: var(--accent);
+  }
+}

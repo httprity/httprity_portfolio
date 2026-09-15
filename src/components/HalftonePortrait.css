@@ -1,0 +1,37 @@
+.halftone {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: transparent;
+  touch-action: pan-y;
+}
+
+.halftone__canvas {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity var(--dur-base) var(--ease-out);
+}
+.halftone.is-ready .halftone__canvas {
+  opacity: 1;
+}
+
+/* Fallback when the source image can't be loaded: an ordered-dither field
+   so the composition still holds, with an obvious note. */
+.halftone__missing {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background-color: var(--surface);
+  background-image: radial-gradient(circle at center, var(--border-strong) 0.9px, transparent 1px);
+  background-size: 6px 6px;
+  border: 1px solid var(--border);
+}
+.halftone__missing .mono {
+  background: var(--background);
+  padding: var(--space-3) var(--space-4);
+  text-align: center;
+  line-height: 1.7;
+}

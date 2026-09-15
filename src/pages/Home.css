@@ -1,0 +1,60 @@
+/* Selected work gets a little more room and a wider heading measure. */
+.work {
+  padding-top: calc(var(--space-section) + 1rem);
+}
+.section-head__body--wide .h2 {
+  max-width: 20ch;
+}
+
+/* ---------- about: warmer, more human ---------- */
+.about {
+  background: var(--surface);
+}
+.about__grid {
+  display: grid;
+  gap: var(--space-5);
+}
+.about__heading {
+  font-size: var(--text-h2);
+  line-height: 1.08;
+  max-width: 22ch;
+}
+.about__text {
+  margin-top: var(--space-6);
+  display: grid;
+  gap: var(--space-4);
+  max-width: 58ch;
+  font-size: var(--text-lg);
+  line-height: 1.6;
+  color: var(--foreground);
+  text-wrap: pretty;
+}
+.about__text p + p {
+  color: var(--muted);
+}
+.about__exploring {
+  margin-top: var(--space-7);
+  display: grid;
+  gap: var(--space-3);
+}
+.about__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+.about__tags li {
+  padding: 0.45rem 0.8rem;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  border-radius: var(--radius-2);
+  font-size: 0.9rem;
+  letter-spacing: -0.005em;
+}
+
+@media (min-width: 900px) {
+  .about__grid {
+    grid-template-columns: 3fr 9fr;
+    gap: var(--space-6);
+    align-items: start;
+  }
+}

@@ -1,0 +1,66 @@
+.agrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  border-top: 1px solid var(--border);
+}
+@media (min-width: 640px) {
+  .agrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    border-left: 1px solid var(--border);
+  }
+}
+@media (min-width: 1024px) {
+  .agrid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.acard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  padding: var(--space-5);
+  border-bottom: 1px solid var(--border);
+  min-height: 260px;
+  /* faint pixel field, only inside the card, only at the top */
+  background-image: radial-gradient(circle, var(--border) 0.7px, transparent 1px);
+  background-size: 8px 8px;
+  background-repeat: repeat-x;
+  background-position: 0 var(--space-3);
+}
+@media (min-width: 640px) {
+  .acard {
+    border-right: 1px solid var(--border);
+  }
+}
+@media (min-width: 1024px) {
+  .acard {
+    min-height: 320px;
+  }
+}
+
+.acard__index {
+  font-size: var(--text-sm);
+}
+
+.acard__result {
+  display: flex;
+  flex-direction: column;
+  margin-top: auto;
+  font-size: var(--text-stat);
+  font-weight: 500;
+  line-height: 0.92;
+  letter-spacing: -0.045em;
+  text-transform: uppercase;
+}
+.acard__line + .acard__line {
+  color: var(--muted);
+}
+
+.acard__meta {
+  display: grid;
+  gap: 2px;
+  font-size: var(--text-xs);
+  line-height: 1.5;
+}

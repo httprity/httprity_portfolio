@@ -1,0 +1,32 @@
+.ascii-divider {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  width: 100%;
+  max-width: var(--container-width);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--faint);
+  line-height: 1;
+  position: relative;
+  z-index: 1;
+}
+.ascii-divider__mark {
+  transform: translateX(-50%);
+  width: 0;
+  display: inline-flex;
+  justify-content: center;
+}
+.ascii-divider__mark:last-child {
+  transform: translateX(50%);
+}
+.ascii-divider__line {
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+.ascii-divider__label {
+  font-size: var(--text-xs);
+}
