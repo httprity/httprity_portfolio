@@ -52,6 +52,20 @@
   margin-top: var(--space-2);
 }
 
+/* inline thumbnail for touch / narrow layouts (desktop uses the floating preview) */
+.prow__thumb {
+  display: block;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+.prow__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 /* ---------- desktop: four-column editorial row ---------- */
 @media (min-width: 900px) {
   .prow__link {
@@ -70,6 +84,19 @@
     margin-top: 0;
     justify-self: end;
     padding-top: 0.6em;
+  }
+  .prow__thumb {
+    display: none;
+  }
+}
+
+/* wide touch devices (tablets in landscape) keep the thumbnail in the aside column */
+@media (min-width: 900px) and (hover: none) {
+  .prow__thumb {
+    display: block;
+    grid-column: 3;
+    grid-row: 2;
+    margin-top: var(--space-4);
   }
 }
 

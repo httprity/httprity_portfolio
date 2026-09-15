@@ -72,9 +72,6 @@ export function ProjectPreview({ project, area }: Props) {
             </div>
           )}
           <span className="ppreview__dots" />
-          <span className="ppreview__label mono">
-            P/{project.index} <span className="mono--faint">::</span> PREVIEW
-          </span>
         </div>
       )}
     </div>

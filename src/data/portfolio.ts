@@ -123,7 +123,7 @@ export type Project = {
   summary: string;
   tags: string[];
   cta: string;
-  /** TODO: add a preview image to /public/work/<slug>.jpg and set this. */
+  /** Preview shown in the hover card (desktop). Lives in /public/work. */
   image?: string;
 };
 
@@ -131,6 +131,7 @@ export const projects: Project[] = [
   {
     index: '001',
     slug: 'deshly',
+    image: '/work/deshly.webp',
     name: 'Deshly Studio',
     summary: 'AI product photography that preserves identity and keeps campaigns editable.',
     tags: ['Product', 'Computer Vision', 'AI', '3D'],
@@ -139,6 +140,7 @@ export const projects: Project[] = [
   {
     index: '002',
     slug: 'agrisense',
+    image: '/work/agrisense.webp',
     name: 'AgriSense AI',
     summary: 'Turns a farmer’s needs into grounded, actionable season plans.',
     tags: ['AI', 'RAG', 'Agriculture', 'Decision Support'],
@@ -147,6 +149,7 @@ export const projects: Project[] = [
   {
     index: '003',
     slug: 'bikolpo',
+    image: '/work/bikolpo.webp',
     name: 'Bikolpo',
     summary: 'Predicts rain-disrupted trips and finds safer alternatives.',
     tags: ['Geospatial AI', 'Routing', 'Climate'],
@@ -155,6 +158,7 @@ export const projects: Project[] = [
   {
     index: '004',
     slug: 'safaitrack',
+    image: '/work/safaitrack.webp',
     name: 'SafaiTrack',
     summary: 'Sensor-free waste collection powered by forecasting, routing, and grounded AI.',
     tags: ['Forecasting', 'Optimization', 'Civic Tech'],
@@ -163,6 +167,7 @@ export const projects: Project[] = [
   {
     index: '005',
     slug: 'markable',
+    image: '/work/markable.webp',
     name: 'Markable',
     summary: 'Reveals hidden inconsistencies in human marking without replacing teachers.',
     tags: ['AI', 'Education', 'Evaluation', 'Human-AI'],

@@ -23,6 +23,12 @@ export function ProjectRow({ project, delay = 0, onEnter, onLeave }: Props) {
           P/{project.index}
         </span>
 
+        {project.image && (
+          <span className="prow__thumb" aria-hidden="true">
+            <img src={project.image} alt="" loading="lazy" decoding="async" />
+          </span>
+        )}
+
         <span className="prow__main">
           <span id={titleId} className="prow__name">
             {project.name}
