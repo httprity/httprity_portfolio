@@ -1,12 +1,18 @@
-import { useEffect } from 'react';
+import { useEffect, type ComponentType } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { caseStudyOutline, projects } from '../data/portfolio';
 import { AsciiDivider } from '../components/AsciiDivider';
+import { BikolpoCase } from './case/bikolpo/BikolpoCase';
 import './ProjectPage.css';
 
+/** Projects with a written case study render their own page. */
+const cases: Record<string, ComponentType> = {
+  bikolpo: BikolpoCase,
+};
+
 /**
- * Project detail route. The case-study body is not written yet, so this page
- * renders the header from data plus the intended outline — clearly marked.
+ * Project detail route. Projects with a case study render it; the rest show
+ * the header from data plus the intended outline — clearly marked.
  */
 export function ProjectPage() {
   const { slug } = useParams();
@@ -17,6 +23,9 @@ export function ProjectPage() {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
   }, [slug]);
+
+  const Case = slug ? cases[slug] : undefined;
+  if (Case) return <Case />;
 
   if (!project) {
     return (

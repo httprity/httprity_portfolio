@@ -17,14 +17,16 @@ npm run typecheck
 | Design tokens, type scale, primitives (`.mono`, `.ascii-link`, `.btn`, `.reveal`) | `src/styles/global.css` |
 | Halftone portrait renderer + tuning knobs | `src/components/HalftonePortrait.tsx` |
 | Landing page composition | `src/pages/Home.tsx` |
-| Project detail route (outline only for now) | `src/pages/ProjectPage.tsx` |
+| Project detail route — renders a case study if one exists, else the outline | `src/pages/ProjectPage.tsx` |
+| Case-study layout kit (header, sections, stack, points, callout) | `src/pages/case/CaseKit.tsx` + `Case.css` |
+| Bikolpo case study: content / page / interactive widgets | `src/data/cases/bikolpo.ts` · `src/pages/case/bikolpo/` |
 | Portrait source image | `public/portrait.jpg` |
 
 ## TODO before publishing
 
 - [ ] `src/data/portfolio.ts` → `socials`: replace the three `TODO` hrefs (GitHub, LinkedIn, mailto).
-- [ ] Add project preview images to `public/work/<slug>.jpg` and set `image` on each project (the floating hover preview falls back to a numbered placeholder until then).
-- [ ] Write the case studies — `ProjectPage` currently shows the intended outline, clearly labelled "in progress".
+- [x] Project preview images live in `public/work/<slug>.webp` (1280px, ~40–70 KB each).
+- [ ] Write the remaining case studies (Bikolpo is done — copy its shape: a `src/data/cases/<slug>.ts` content file, a page under `src/pages/case/<slug>/`, register it in the `cases` map in `ProjectPage.tsx`). Others show the outline, labelled "in progress".
 
 ## Tuning the halftone
 
